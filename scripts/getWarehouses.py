@@ -2,9 +2,10 @@ import requests
 import json
 import re
 import os
+import sys
 
-def getWhs():
-    auth_token = "zlhKTvKaZthfwpwjhpCWwSpzpPL6FtqFumMNhJQ65fXeNF6DDKfBLtkXVwi42Ms2"
+def getWhs(token):
+    auth_token = token
     pagination_count = 200
     pagination_cursor = ""
 
@@ -36,8 +37,10 @@ def getWhs():
         if pagination_cursor == None:
             next_page = bool(0)
 
-def main():
-    getWhs()
+def main(token):
+    getWhs(token)
 
 if __name__ == "__main__":
-    main()
+    if(len(sys.argv) > 1):
+        token = sys.argv[1]
+        main(token)
